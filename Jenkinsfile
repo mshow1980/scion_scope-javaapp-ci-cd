@@ -14,7 +14,8 @@ pipeline{
         stage('checkout workspace'){
             steps{
                 script{
-                    git 'https://github.com/mshow1980/scion_scope-javaapp-ci-cd.git'
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], 
+                    userRemoteConfigs: [[url: 'https://github.com/mshow1980/scion_scope-javaapp-ci-cd.git']])
                 }
             }
         }
