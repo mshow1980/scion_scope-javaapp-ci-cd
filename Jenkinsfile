@@ -1,6 +1,10 @@
 pipeline{
     
-    agent any
+    agent any{
+        docker {
+            image 'maven'
+        }
+    }
 
     stages{
         stage('Clean Workspace'){
