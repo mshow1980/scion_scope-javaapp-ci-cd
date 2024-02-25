@@ -23,10 +23,10 @@ pipeline{
             }
         }
         stage('sonar quality check'){
-            steps{
-            environment {
+                        environment {
                 SCANNER_HOME = tool 'sonar-scanner'
             }
+            steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'SOnar-Token') {
                         sh "${SCANNER_HOME}/bin/sonar-scanner \
