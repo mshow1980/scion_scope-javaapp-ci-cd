@@ -24,7 +24,7 @@ pipeline{
         }
         stage('sonar quality check'){
                         environment {
-                SCANNER_HOME = tool 'sonar-scanner'
+                SCANNER_HOME = tool 'SonarQube-scanner'
             }
             steps{
                 script{
