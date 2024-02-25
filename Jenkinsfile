@@ -19,6 +19,16 @@ pipeline{
                 }
             }
         }
+        stage('sonar quality check'){
+            steps{
+                script{
+                    withSonarQubeEnv(credentialsId: 'SonarQube-token') {
+                        sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+
+        }
     }
 
 }
