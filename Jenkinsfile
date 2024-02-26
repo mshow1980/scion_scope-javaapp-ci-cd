@@ -25,5 +25,14 @@ pipeline{
                 }
             }
         }
+        stage('sonar analysis'){
+            steps{
+                script{
+                    withSonarQubeEnv(credentialsId: 'SOnar-Token') {
+                    sh 'mvn clean package sonar:sonar'
+                    }
+                }
+            }
+        }
     }
 }
