@@ -30,6 +30,7 @@ pipeline{
                 script{
                     withSonarQubeEnv(credentialsId: 'SOnar-Token') {
                         sh """
+                        ${scannerHome}/bin/sonar-scanner \
                         mvn clean verify sonar:sonar \
                         -Dsonar.projectKey=scion_scope-javaapp-ci-cd \
                         -Dsonar.host.url=http://44.221.61.24:9000 \
