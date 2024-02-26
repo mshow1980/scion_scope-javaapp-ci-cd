@@ -31,7 +31,7 @@ pipeline{
                     withSonarQubeEnv(credentialsId: 'SOnar-Token') {
                         mvn clean verify sonar:sonar \
                         -Dsonar.projectKey=scion_scope-javaapp-ci-cd \
-                        -Dsonar.host.url=http://44.221.61.24:9000 \
+                        -Dsonar.host.url={http://44.221.61.24:9000 \}
                         -Dsonar.login=SOnar-Token
                     }
                 }
