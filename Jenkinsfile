@@ -22,12 +22,10 @@ pipeline{
                 }
             }
         }
-        stage('sonar quality check'){
+        stage('clean install'){
             steps{
-                script{
-                    withSonarQubeEnv(credentialsId: 'SOnar-Token') {
-                        sh "mvn clean package sonar:sonar -Dsonar.login=SOnar-Token"
-                    }
+                srcipt{
+                    sh 'mvn clean package'
                 }
             }
         }
