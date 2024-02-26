@@ -24,7 +24,7 @@ pipeline{
         }
         stage('clean install'){
             steps{
-                srcipt{
+                script{
                     sh 'mvn clean package'
                 }
             }
