@@ -1,5 +1,8 @@
 pipeline{
     agent any 
+    environment{
+        SCANNER_HOME= tool 'SonarQube-Scanner'
+    }
     
     stages{
         stage('Clean Workspace'){
@@ -29,13 +32,8 @@ pipeline{
             steps{
                 script{
                     withSonarQubeEnv(credentialsId: 'SOnar-Token') {
-                        sh """
-                        ${scannerHome}/bin/sonar-scanner \
-                        mvn clean verify sonar:sonar \
-                        -Dsonar.projectKey=scion_scope-javaapp-ci-cd \
-                        -Dsonar.host.url=http://44.221.61.24:9000 \
-                        -Dsonar.login=SOnar-Token
-                        """
+                        sh "$SCANNER_HOME/bin/SonarQube-Scanner -Dsonar.projectKey=scion_scope-javaapp-ci-cd -Dsonar.projectName=scion_scope-javaapp-ci-cd"
+                        sh 'mvn clean package sonar:sonar'
                     }
                 }
             }
