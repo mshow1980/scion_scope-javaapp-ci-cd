@@ -31,7 +31,7 @@ pipeline{
         stage('sonar analysis'){
             steps{
                 script{
-                    withSonarQubeEnv('sonar:sonar') {
+                    withSonarQubeEnv(credentialsId: 'SOnar-Token') {
                         sh """
                         $SCANNER_HOME/bin/SonarQube-Scanner 
                         -Dsonar.projectKey=scion_scope-javaapp-ci-cd 
