@@ -31,9 +31,12 @@ pipeline{
         stage('sonar analysis'){
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'SOnar-Token') {
-                        sh "$SCANNER_HOME/bin/SonarQube-Scanner -Dsonar.projectKey=scion_scope-javaapp-ci-cd -Dsonar.projectName=scion_scope-javaapp-ci-cd"
-                        sh 'mvn clean package sonar:sonar'
+                    withSonarQubeEnv('sonar:sonar') {
+                        sh """
+                        $SCANNER_HOME/bin/SonarQube-Scanner 
+                        -Dsonar.projectKey=scion_scope-javaapp-ci-cd 
+                        -Dsonar.java.binaries=. / 
+                        """
                     }
                 }
             }
