@@ -42,7 +42,7 @@ pipeline{
                     script{
                         def scannerHome = tool 'SonarQubeScanner3'
                         withSonarQubeEnv('SonarQube') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+                        sh "${scannerHome}/bin/sonar-scanner -Dproject.settings=./sonar-project.properties"
                         }
                     }
                 }
