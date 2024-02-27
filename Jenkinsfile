@@ -28,15 +28,16 @@ pipeline{
                 }
             }
         }
-        stage('sonar analysis'){
+        stage('OWASP Dependency-Check Vulnerabilities'){
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'SOnar-Token') {
-                        sh """
-                        $SCANNER_HOME/bin/SonarQube-Scanner 
-                        -Dsonar.projectKey=scion_scope-javaapp-ci-cd 
-                        -Dsonar.java.binaries=. / 
-                        """
+                dependencyCheck additionalArguments: ''' 
+                    -o "./" 
+                    -s "./"
+                    -f "ALL" 
+                    --prettyPrint''', odcInstallation: 'OWASP-DC'
+
+                dependencyCheckPublisher pattern: 'dependency-check-report.xml'
                     }
                 }
             }
