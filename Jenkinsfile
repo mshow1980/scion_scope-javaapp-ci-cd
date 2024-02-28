@@ -1,7 +1,7 @@
 pipeline{
     agent any 
     environment{
-        scanner_home = 'SonarQubeScanner3'
+        scanner_home = 'sonar-scanner'
     }
 
     stages{
@@ -43,11 +43,11 @@ pipeline{
             stage('sonarqube scan'){
                 steps{
                     script{
-                        def scannerHome = tool 'SonarQubeScanner3'
+                        def scannerHome = tool 'sonar-scanner'
                         sh "ls ${scannerHome}"
                         sh "echo ${scannerHome}"
                         withSonarQubeEnv('SonarQube') {
-                        sh '${scannerHome}/bin/SonarQubeScanner3 sonar.projectKey=scion_scope-javaapp-ci-cd'
+                        sh '${scannerHome}/bin/sonar-scanner sonar.projectKey=scion_scope-javaapp-ci-cd'
                         }
                     }
                 }
