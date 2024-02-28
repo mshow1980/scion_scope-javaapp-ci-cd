@@ -42,6 +42,7 @@ pipeline{
                     script{
                         def scannerHome = tool 'SonarQubeScanner3'
                         sh "ls ${scannerHome}"
+                        sh "echo ${scannerHome}"
                         withSonarQubeEnv('SonarQube') {
                         sh '${scannerHome}/bin/sonar-scanner sonar.projectKey=scion_scope-javaapp-ci-cd'
                         }
