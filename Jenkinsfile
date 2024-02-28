@@ -1,12 +1,7 @@
 pipeline{
     agent any 
-    environment{
-        scanner_home = 'sonar-scanner'
-    }
-
     stages{
         stage('Clean Workspace'){
-
             steps{
                 script{
                     cleanWs()
@@ -43,14 +38,11 @@ pipeline{
             stage('sonarqube scan'){
                 steps{
                     script{
-                        def scannerHome = tool 'sonar-scanner'
-                        sh "ls ${scannerHome}"
-                        sh "echo ${scannerHome}"
-                        withSonarQubeEnv('SonarQube') {
-                        sh '${scannerHome}/bin/sonar-scanner sonar.projectKey=scion_scope-javaapp-ci-cd'
+                        withSonarQubeEnv(credentialsId: 'Jenkins-Token') {
+                        mvn clean package sonar:sonar -Dsonar.login=Jenkins-Token
+                        }
                         }
                     }
                 }
             }
         }
-    }
