@@ -1,5 +1,9 @@
 pipeline{
     agent any 
+    environment {
+        scannerHome = tool 'sonar_scanner'
+
+            }
 
     stages{
         stage('Clean Workspace'){
