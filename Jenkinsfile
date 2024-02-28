@@ -1,9 +1,5 @@
 pipeline{
     agent any 
-    environment {
-        scannerHome = tool 'sonar_scanner'
-
-            }
 
     stages{
         stage('Clean Workspace'){
@@ -45,6 +41,7 @@ pipeline{
                 steps{
                     script{
                         def scannerHome = tool 'SonarQubeScanner3'
+                        sh "ls ${scannerHome}"
                         withSonarQubeEnv('SonarQube') {
                         sh '${scannerHome}/bin/sonar-scanner sonar.projectKey=scion_scope-javaapp-ci-cd'
                         }
