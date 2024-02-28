@@ -1,5 +1,8 @@
 pipeline{
     agent any 
+    environment{
+        scanner_home = 'SonarQubeScanner3'
+    }
 
     stages{
         stage('Clean Workspace'){
