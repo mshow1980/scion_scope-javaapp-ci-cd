@@ -47,7 +47,7 @@ pipeline{
                         sh "ls ${scannerHome}"
                         sh "echo ${scannerHome}"
                         withSonarQubeEnv('SonarQube') {
-                        sh '${scannerHome}/bin/sonar-scanner sonar.projectKey=scion_scope-javaapp-ci-cd'
+                        sh '${scannerHome}/bin/SonarQubeScanner3 sonar.projectKey=scion_scope-javaapp-ci-cd'
                         }
                     }
                 }
