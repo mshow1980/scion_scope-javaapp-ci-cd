@@ -42,18 +42,7 @@ pipeline{
                     script{
                         def scannerHome = tool 'SonarQubeScanner3'
                         withSonarQubeEnv('SonarQube') {
-                        sh """
-                        ${scannerHome}/bin/sonar-scanner
-                        sonar.projectKey=scion_scope-javaapp-ci-cd
-                        sonar.projectBaseDir=./scion_scope-javaapp-ci-cd
-                        sonar.projectName=scion_scope-javaapp-ci-cd
-                        sonar.projectVersion=1.0 
-                        sonar.sources=./src/main/java 
-                        sonar.language=java 
-                        sonar.java.binaries=. 
-                        sonar.scm.disabled=True 
-                        sonar.sourceEncoding=UTF-8
-                        """
+                        sh '${scannerHome}/bin/sonar-scanner sonar.projectKey=scion_scope-javaapp-ci-cd'
                         }
                     }
                 }
